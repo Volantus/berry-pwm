@@ -37,8 +37,19 @@ extern "C" {
             Php::ByVal("gpioPin", Php::Type::Numeric, true),
             Php::ByVal("frequency", Php::Type::Numeric, true)
         });
-
-
+        pwmSender.method<&PwmSender::getPulseWidth> ("getPulseWidth", {
+            Php::ByVal("gpioPin", Php::Type::Numeric, true),
+        });
+        pwmSender.method<&PwmSender::getRange> ("getRange", {
+            Php::ByVal("gpioPin", Php::Type::Numeric, true),
+        });
+        pwmSender.method<&PwmSender::getDutyCycle> ("getDutyCycle", {
+            Php::ByVal("gpioPin", Php::Type::Numeric, true),
+        });
+        pwmSender.method<&PwmSender::getFrequency> ("getFrequency", {
+            Php::ByVal("gpioPin", Php::Type::Numeric, true),
+        });
+        
         extension.add(std::move(pwmSender));
 
         extension.onStartup([]() {

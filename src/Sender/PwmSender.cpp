@@ -43,7 +43,7 @@ void PwmSender::setPulseWidth(Php::Parameters &params)
         case PI_BAD_PULSEWIDTH:
             Exceptions::InvalidArgumentException("gpioServo call failed => bad pulse width given (PI_BAD_PULSEWIDTH)"); return;
         default:
-            throw new CommandFailedException('gpioServo call failed => unknown error with negative RC');
+            Exceptions::RuntimeException('gpioServo call failed => unknown error with negative RC');
     }
 }
 
@@ -73,7 +73,7 @@ void PwmSender::setDutyCycle(Php::Parameters &params)
         case PI_BAD_DUTYCYCLE:
             Exceptions::InvalidArgumentException("gpioPWM call failed => bad duty cycle given (PI_BAD_DUTYCYCLE)"); return;
         default:
-            throw new CommandFailedException('gpioPWM call failed => unknown error with negative RC');
+            Exceptions::RuntimeException('gpioPWM call failed => unknown error with negative RC');
     }
 }
 
@@ -103,7 +103,7 @@ void PwmSender::setRange(Php::Parameters &params)
         case PI_BAD_DUTYRANGE:
             Exceptions::InvalidArgumentException("gpioPWM call failed => bad duty range given (PI_BAD_DUTYRANGE)"); return;
         default:
-            throw new CommandFailedException('gpioPWM call failed => unknown error with negative RC');
+            Exceptions::RuntimeException('gpioPWM call failed => unknown error with negative RC');
     }
 }
 
@@ -131,6 +131,97 @@ void PwmSender::setFrequency(Php::Parameters &params)
         case PI_BAD_USER_GPIO:
             Exceptions::InvalidArgumentException("gpioPWM call failed => bad GPIO pin given (PI_BAD_USER_GPIO)"); return;
         default:
-            throw new CommandFailedException('gpioPWM call failed => unknown error with negative RC');
+            Exceptions::RuntimeException('gpioPWM call failed => unknown error with negative RC');
+    }
+}
+
+Php::Value PwmSender::getPulseWidth(Php::Parameters &params)
+{
+    int _gpioPin = params[0];
+
+    if (_gpioPin < 0) {
+        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
+    }
+
+    unsigned gpioPin = _gpioPin;
+
+    int rc = gpioGetServoPulsewidth(gpioPin);
+    if (rc >= 0) {
+        return rc;
+    }
+
+    switch (rc) {
+        case PI_BAD_USER_GPIO:
+            Exceptions::InvalidArgumentException("gpioPWM call failed => bad GPIO pin given (PI_BAD_USER_GPIO)"); return PI_BAD_USER_GPIO;
+        case PI_NOT_SERVO_GPIO:
+            Exceptions::RuntimeException('gpioPWM call failed => no active PWM signal on given GPIO (PI_NOT_SERVO_GPIO)'); return PI_NOT_SERVO_GPIO;
+        default:
+            Exceptions::RuntimeException('gpioPWM call failed => unknown error with negative RC');
+    }
+}
+
+Php::Value PwmSender::getRange(Php::Parameters &params)
+{
+    int _gpioPin = params[0];
+
+    if (_gpioPin < 0) {
+        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
+    }
+
+    unsigned gpioPin = _gpioPin;
+
+    int rc = gpioGetPWMrange(gpioPin);
+    if (rc < 0) {
+        Exceptions::RuntimeException('gpioPWM call failed => unknown error with negative RC');
+    }
+
+    return rc;
+}
+
+Php::Value PwmSender::getDutyCycle(Php::Parameters &params)
+{
+    int _gpioPin = params[0];
+
+    if (_gpioPin < 0) {
+        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
+    }
+
+    unsigned gpioPin = _gpioPin;
+
+    int rc = gpioGetPWMdutycycle(gpioPin);
+    if (rc >= 0) {
+        return rc;
+    }
+
+    switch (rc) {
+        case PI_BAD_USER_GPIO:
+            Exceptions::InvalidArgumentException("gpioPWM call failed => bad GPIO pin given (PI_BAD_USER_GPIO)"); return PI_BAD_USER_GPIO;
+        case PI_NOT_PWM_GPIO:
+            Exceptions::RuntimeException('gpioPWM call failed => no active PWM signal on given GPIO (PI_NOT_PWM_GPIO)'); return PI_NOT_PWM_GPIO;
+        default:
+            Exceptions::RuntimeException('gpioPWM call failed => unknown error with negative RC');
+    }
+}
+
+Php::Value PwmSender::getFrequency(Php::Parameters &params)
+{
+    int _gpioPin = params[0];
+
+    if (_gpioPin < 0) {
+        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
+    }
+
+    unsigned gpioPin = _gpioPin;
+
+    int rc = gpioGetPWMfrequency(gpioPin);
+    if (rc >= 0) {
+        return rc;
+    }
+
+    switch (rc) {
+        case PI_BAD_USER_GPIO:
+            Exceptions::InvalidArgumentException("gpioPWM call failed => bad GPIO pin given (PI_BAD_USER_GPIO)"); return PI_BAD_USER_GPIO;
+        default:
+            Exceptions::RuntimeException('gpioPWM call failed => unknown error with negative RC');
     }
 }
