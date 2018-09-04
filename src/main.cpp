@@ -21,6 +21,14 @@ extern "C" {
 
         pwmSender.method<&PwmSender::isInitialized> ("isInitialized");
         pwmSender.method<&PwmSender::initialize> ("initialize");
+        pwmSender.method<&PwmSender::setPulseWidth> ("setPulseWidth", {
+            Php::ByVal("gpioPin", Php::Type::Numeric, true),
+            Php::ByVal("pulseWidth", Php::Type::Numeric, true)
+        });
+        pwmSender.method<&PwmSender::setDutyCycle> ("setDutyCycle", {
+            Php::ByVal("gpioPin", Php::Type::Numeric, true),
+            Php::ByVal("dutyCycle", Php::Type::Numeric, true)
+        });
 
         extension.add(std::move(pwmSender));
 

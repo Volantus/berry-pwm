@@ -16,8 +16,8 @@ namespace Sender {
             /* Is the Pigpio library initialized? */
             static Php::Value isInitialized();
 
-            /* Start/stop PWM pulses on a GPIO */
             void setPulseWidth(Php::Parameters &params);
+            void setDutyCycle(Php::Parameters &params);
     };
 
 }
