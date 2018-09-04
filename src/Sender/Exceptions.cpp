@@ -6,6 +6,7 @@ using namespace BerryPwm::Sender;
 
 zend_class_entry* Exceptions::_gioInitFailureException;
 zend_class_entry* Exceptions::_invalidArgumentException;
+zend_class_entry* Exceptions::_runtimeException;
 
 void Exceptions::prepare()
 {
@@ -16,6 +17,9 @@ void Exceptions::prepare()
 
     INIT_CLASS_ENTRY(classEntry, "Volantus\\BerryPwm\\BerryPwm\\GpioInitFailureException", NULL);
     _gioInitFailureException = zend_register_internal_class_ex(&classEntry, zend_exception_get_default());
+
+    INIT_CLASS_ENTRY(classEntry, "Volantus\\BerryPwm\\BerryPwm\\RuntimeException", NULL);
+    _runtimeException = zend_register_internal_class_ex(&classEntry, zend_exception_get_default());
 }
 
 void Exceptions::registerException(const char* name, zend_class_entry **memberClassEntry)
@@ -33,4 +37,9 @@ void Exceptions::InvalidArgumentException(const char* message)
 void Exceptions::GpioInitFailureException(const char* message)
 {
     zend_throw_exception_ex(_gioInitFailureException, 0, message, __FILE__, __LINE__);
+}
+
+void Exceptions::RuntimeException(const char* message)
+{
+    zend_throw_exception_ex(_runtimeException, 0, message, __FILE__, __LINE__);
 }

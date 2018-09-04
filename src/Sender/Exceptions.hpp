@@ -13,12 +13,14 @@ namespace Sender {
     private:
         static zend_class_entry* _invalidArgumentException;
         static zend_class_entry* _gioInitFailureException;
+        static zend_class_entry* _runtimeException;
         static void registerException(const char* name, zend_class_entry **memberClassEntry);
 
     public:
         static void prepare();
         static void InvalidArgumentException(const char* message);
         static void GpioInitFailureException(const char* message);
+        static void RuntimeException(const char* message);
     };
 
 }
