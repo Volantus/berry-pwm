@@ -29,6 +29,15 @@ extern "C" {
             Php::ByVal("gpioPin", Php::Type::Numeric, true),
             Php::ByVal("dutyCycle", Php::Type::Numeric, true)
         });
+        pwmSender.method<&PwmSender::setRange> ("setRange", {
+            Php::ByVal("gpioPin", Php::Type::Numeric, true),
+            Php::ByVal("range", Php::Type::Numeric, true)
+        });
+        pwmSender.method<&PwmSender::setFrequency> ("setFrequency", {
+            Php::ByVal("gpioPin", Php::Type::Numeric, true),
+            Php::ByVal("frequency", Php::Type::Numeric, true)
+        });
+
 
         extension.add(std::move(pwmSender));
 

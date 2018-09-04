@@ -18,6 +18,8 @@ namespace Sender {
 
             void setPulseWidth(Php::Parameters &params);
             void setDutyCycle(Php::Parameters &params);
+            void setRange(Php::Parameters &params);
+            void setFrequency(Php::Parameters &params);
     };
 
 }

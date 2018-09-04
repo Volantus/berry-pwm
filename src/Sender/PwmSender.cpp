@@ -76,3 +76,61 @@ void PwmSender::setDutyCycle(Php::Parameters &params)
             throw new CommandFailedException('gpioPWM call failed => unknown error with negative RC');
     }
 }
+
+void PwmSender::setRange(Php::Parameters &params)
+{
+    int _gpioPin = params[0];
+    int _range = params[1];
+
+    if (_gpioPin < 0) {
+        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
+    }
+    if (_range < 0) {
+        Exceptions::InvalidArgumentException("No negative values allowed for <range> parameter"); return;
+    }
+
+    unsigned gpioPin = _gpioPin;
+    unsigned range = _range;
+
+    int rc = gpioSetPWMrange(gpioPin, range);
+    if (rc >= 0) {
+        return;
+    }
+
+    switch (rc) {
+        case PI_BAD_USER_GPIO:
+            Exceptions::InvalidArgumentException("gpioPWM call failed => bad GPIO pin given (PI_BAD_USER_GPIO)"); return;
+        case PI_BAD_DUTYRANGE:
+            Exceptions::InvalidArgumentException("gpioPWM call failed => bad duty range given (PI_BAD_DUTYRANGE)"); return;
+        default:
+            throw new CommandFailedException('gpioPWM call failed => unknown error with negative RC');
+    }
+}
+
+void PwmSender::setFrequency(Php::Parameters &params)
+{
+    int _gpioPin = params[0];
+    int _frequency = params[1];
+
+    if (_gpioPin < 0) {
+        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
+    }
+    if (_frequency < 0) {
+        Exceptions::InvalidArgumentException("No negative values allowed for <frequency> parameter"); return;
+    }
+
+    unsigned gpioPin = _gpioPin;
+    unsigned frequency = _frequency;
+
+    int rc = gpioSetPWMfrequency(gpioPin, frequency);
+    if (rc >= 0) {
+        return;
+    }
+
+    switch (rc) {
+        case PI_BAD_USER_GPIO:
+            Exceptions::InvalidArgumentException("gpioPWM call failed => bad GPIO pin given (PI_BAD_USER_GPIO)"); return;
+        default:
+            throw new CommandFailedException('gpioPWM call failed => unknown error with negative RC');
+    }
+}
