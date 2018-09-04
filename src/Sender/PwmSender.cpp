@@ -32,7 +32,7 @@ void PwmSender::setPulseWidth(Php::Parameters &params)
     unsigned gpioPin = _gpioPin;
     unsigned pulseWidth = _pulseWidth;
 
-    int rc = gpioPWM(gpioPin, pulseWidth);
+    int rc = gpioServo(gpioPin, pulseWidth);
     if (rc > 0) {
         return;
     }
