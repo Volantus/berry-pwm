@@ -1,5 +1,5 @@
 # berry-pwm
-Native PHP extension for sending PWM signals
+Native PHP extension for sending PWM signals based on [PHP-CPP](http://www.php-cpp.com) and the great [Pigpiod library](http://abyz.me.uk/rpi/pigpio) on RaspberryPi.
 
 # Installation
 ## Compile from source
