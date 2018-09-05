@@ -3,6 +3,10 @@
 #include <pigpio.h>
 #include "../Core/State.hpp"
 
+#define VALIDATE_NON_NEGATIVE_PARAMETER (parameterName) if (_##parameterName## < 0) { \
+        Exceptions::InvalidArgumentException("No negative values allowed for <" #parameterName "> parameter"); return; \
+    }
+
 using namespace BerryPwm::Sender;
 using namespace BerryPwm::Core;
 
@@ -22,12 +26,8 @@ void PwmSender::setPulseWidth(Php::Parameters &params)
     int _gpioPin = params[0];
     int _pulseWidth = params[1];
 
-    if (_gpioPin < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
-    }
-    if (_pulseWidth < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <pulseWidth> parameter"); return;
-    }
+    VALIDATE_NON_NEGATIVE_PARAMETER(gpioPin)
+    VALIDATE_NON_NEGATIVE_PARAMETER(pulseWidth)
 
     unsigned gpioPin = _gpioPin;
     unsigned pulseWidth = _pulseWidth;
@@ -52,12 +52,8 @@ void PwmSender::setDutyCycle(Php::Parameters &params)
     int _gpioPin = params[0];
     int _dutyCacle = params[1];
 
-    if (_gpioPin < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
-    }
-    if (_dutyCacle < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <dutyCacle> parameter"); return;
-    }
+    VALIDATE_NON_NEGATIVE_PARAMETER(gpioPin)
+    VALIDATE_NON_NEGATIVE_PARAMETER(dutyCacle)
 
     unsigned gpioPin = _gpioPin;
     unsigned dutyCacle = _dutyCacle;
@@ -82,12 +78,8 @@ void PwmSender::setRange(Php::Parameters &params)
     int _gpioPin = params[0];
     int _range = params[1];
 
-    if (_gpioPin < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
-    }
-    if (_range < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <range> parameter"); return;
-    }
+    VALIDATE_NON_NEGATIVE_PARAMETER(gpioPin)
+    VALIDATE_NON_NEGATIVE_PARAMETER(range)
 
     unsigned gpioPin = _gpioPin;
     unsigned range = _range;
@@ -112,12 +104,8 @@ void PwmSender::setFrequency(Php::Parameters &params)
     int _gpioPin = params[0];
     int _frequency = params[1];
 
-    if (_gpioPin < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
-    }
-    if (_frequency < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <frequency> parameter"); return;
-    }
+    VALIDATE_NON_NEGATIVE_PARAMETER(gpioPin)
+    VALIDATE_NON_NEGATIVE_PARAMETER(frequency)
 
     unsigned gpioPin = _gpioPin;
     unsigned frequency = _frequency;
@@ -138,11 +126,7 @@ void PwmSender::setFrequency(Php::Parameters &params)
 Php::Value PwmSender::getPulseWidth(Php::Parameters &params)
 {
     int _gpioPin = params[0];
-
-    if (_gpioPin < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
-    }
-
+    VALIDATE_NON_NEGATIVE_PARAMETER(gpioPin)
     unsigned gpioPin = _gpioPin;
 
     int rc = gpioGetServoPulsewidth(gpioPin);
@@ -163,11 +147,7 @@ Php::Value PwmSender::getPulseWidth(Php::Parameters &params)
 Php::Value PwmSender::getRange(Php::Parameters &params)
 {
     int _gpioPin = params[0];
-
-    if (_gpioPin < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
-    }
-
+    VALIDATE_NON_NEGATIVE_PARAMETER(gpioPin)
     unsigned gpioPin = _gpioPin;
 
     int rc = gpioGetPWMrange(gpioPin);
@@ -181,11 +161,7 @@ Php::Value PwmSender::getRange(Php::Parameters &params)
 Php::Value PwmSender::getDutyCycle(Php::Parameters &params)
 {
     int _gpioPin = params[0];
-
-    if (_gpioPin < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
-    }
-
+    VALIDATE_NON_NEGATIVE_PARAMETER(gpioPin)
     unsigned gpioPin = _gpioPin;
 
     int rc = gpioGetPWMdutycycle(gpioPin);
@@ -206,11 +182,7 @@ Php::Value PwmSender::getDutyCycle(Php::Parameters &params)
 Php::Value PwmSender::getFrequency(Php::Parameters &params)
 {
     int _gpioPin = params[0];
-
-    if (_gpioPin < 0) {
-        Exceptions::InvalidArgumentException("No negative values allowed for <gpioPin> parameter"); return;
-    }
-
+    VALIDATE_NON_NEGATIVE_PARAMETER(gpioPin)
     unsigned gpioPin = _gpioPin;
 
     int rc = gpioGetPWMfrequency(gpioPin);
