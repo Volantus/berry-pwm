@@ -56,18 +56,18 @@ void PwmSender::setDutyCycle(Php::Parameters &params)
     unsigned gpioPin = _gpioPin;
     unsigned dutyCacle = _dutyCycle;
 
-    int rc = gpioServo(gpioPin, pulseWidth);
+    int rc = gpioPWM(gpioPin, dutyCacle);
     if (rc >= 0) {
         return;
     }
 
     switch (rc) {
         case PI_BAD_USER_GPIO:
-            Exceptions::InvalidArgumentException("gpioServo() call failed => bad GPIO pin given (PI_BAD_USER_GPIO)"); return;
+            Exceptions::InvalidArgumentException("gpioPWM() call failed => bad GPIO pin given (PI_BAD_USER_GPIO)"); return;
         case PI_BAD_DUTYCYCLE:
-            Exceptions::InvalidArgumentException("gpioServo() call failed => bad duty cycle given (PI_BAD_DUTYCYCLE)"); return;
+            Exceptions::InvalidArgumentException("gpioPWM() call failed => bad duty cycle given (PI_BAD_DUTYCYCLE)"); return;
         default:
-            Exceptions::RuntimeException("gpioServo() call failed => unknown error with negative RC");
+            Exceptions::RuntimeException("gpioPWM() call failed => unknown error with negative RC");
     }
 }
 
