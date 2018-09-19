@@ -9,6 +9,23 @@ namespace Volantus\BerryPwm;
 class PwmSender
 {
     /**
+     * Initialize the Pigpio library
+     * Needs to be called once before usage for the process lifetime
+     */
+    public static function initialize()
+    {
+    }
+
+    /**
+     * Is the Pigpio library already initialized?
+     *
+     * @return bool
+     */
+    public static function isInitialized(): bool
+    {
+    }
+
+    /**
      * Sets the pulse width of the PWM signal
      *
      * @param int $gpioPin    GPIO pin (0-31)

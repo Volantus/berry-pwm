@@ -51,7 +51,7 @@ void PwmSender::setDutyCycle(Php::Parameters &params)
     int _dutyCycle = params[1];
 
     if (_gpioPin < 0) {Exceptions::NoNegativeValues("gpioPin"); return;}
-    if (_dutyCycle < 0) {Exceptions::NoNegativeValues("dutyCacle"); return;}
+    if (_dutyCycle < 0) {Exceptions::NoNegativeValues("dutyCycle"); return;}
 
     unsigned gpioPin = _gpioPin;
     unsigned dutyCacle = _dutyCycle;

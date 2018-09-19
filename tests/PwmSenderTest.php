@@ -18,6 +18,10 @@ class PwmSenderTest extends TestCase
 
     protected function setUp()
     {
+        if (!PwmSender::isInitialized()) {
+            PwmSender::initialize();
+        }
+
         $this->sender = new PwmSender();
     }
 
@@ -130,8 +134,8 @@ class PwmSenderTest extends TestCase
     }
     
     /**
-     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
-     * @expectedExceptionMessage gpioPWM call failed => no active PWM signal on given GPIO (PI_NOT_SERVO_GPIO)
+     * @expectedException \Volantus\BerryPwm\RuntimeException
+     * @expectedExceptionMessage gpioGetServoPulsewidth() call failed => no active PWM signal on given GPIO (PI_NOT_SERVO_GPIO)
      */
     public function test_getPulseWidth_noActivePwmSignal()
     {
@@ -157,8 +161,8 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
-     * @expectedExceptionMessage gpioPWM call failed => no active PWM signal on given GPIO (PI_NOT_PWM_GPIO)
+     * @expectedException \Volantus\BerryPwm\RuntimeException
+     * @expectedExceptionMessage gpioGetPWMdutycycle() call failed => no active PWM signal on given GPIO (PI_NOT_PWM_GPIO)
      */
     public function test_getDutyCycle_noActivePwmSignal()
     {
