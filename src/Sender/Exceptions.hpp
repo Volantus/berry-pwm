@@ -21,7 +21,7 @@ namespace Sender {
         static void InvalidArgumentException(const char* message);
         static void GpioInitFailureException(const char* message);
         static void RuntimeException(const char* message);
-        static void NoNegativeValues(const char* parameterName);
+        static void NoNegativeValues(std::string parameterName);
     };
 
 }
