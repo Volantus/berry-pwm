@@ -57,7 +57,7 @@ MKDIR				=	mkdir -p
 #	All source files are simply all *.cpp files found in the current directory
 #
 
-SOURCES				=	$(wildcard src/*.cpp)
+SOURCES				=	$(wildcard src/*/*.cpp)
 OBJECTS				=	$(SOURCES:%.cpp=%.o)
 
 

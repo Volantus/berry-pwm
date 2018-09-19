@@ -43,3 +43,8 @@ void Exceptions::RuntimeException(const char* message)
 {
     zend_throw_exception_ex(_runtimeException, 0, message, __FILE__, __LINE__);
 }
+
+void Exceptions::NoNegativeValues(const char* parameterName)
+{
+    Exceptions::InvalidArgumentException("No negative values allowed for <" parameterName "> parameter")
+}
