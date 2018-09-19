@@ -1,10 +1,10 @@
 <?php
-namespace Volantus\BerryPwm\PwmSender;
+namespace Volantus\BerryPwm;
 
 /**
  * Class PwmSender
  *
- * @package Volantus\BerryPwm\PwmSender
+ * @package Volantus\BerryPwm
  */
 class PwmSender
 {

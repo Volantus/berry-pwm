@@ -1,10 +1,10 @@
 <?php
-namespace Volantus\BerryPwm\PwmSender;
+namespace Volantus\BerryPwm;
 
 /**
  * Interface SenderInterface
  *
- * @package Volantus\BerryPwm\PwmSender
+ * @package Volantus\BerryPwm
  */
 interface SenderInterface
 {

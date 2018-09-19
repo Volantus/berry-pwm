@@ -12,13 +12,13 @@ void Exceptions::prepare()
 {
     zend_class_entry classEntry;
 
-    INIT_CLASS_ENTRY(classEntry, "Volantus\\BerryPwm\\BerryPwm\\InvalidArgumentException", NULL);
+    INIT_CLASS_ENTRY(classEntry, "Volantus\\BerryPwm\\InvalidArgumentException", NULL);
     _invalidArgumentException = zend_register_internal_class_ex(&classEntry, zend_exception_get_default());
 
-    INIT_CLASS_ENTRY(classEntry, "Volantus\\BerryPwm\\BerryPwm\\GpioInitFailureException", NULL);
+    INIT_CLASS_ENTRY(classEntry, "Volantus\\BerryPwm\\GpioInitFailureException", NULL);
     _gioInitFailureException = zend_register_internal_class_ex(&classEntry, zend_exception_get_default());
 
-    INIT_CLASS_ENTRY(classEntry, "Volantus\\BerryPwm\\BerryPwm\\RuntimeException", NULL);
+    INIT_CLASS_ENTRY(classEntry, "Volantus\\BerryPwm\\RuntimeException", NULL);
     _runtimeException = zend_register_internal_class_ex(&classEntry, zend_exception_get_default());
 }
 

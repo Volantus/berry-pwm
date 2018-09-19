@@ -2,7 +2,7 @@
 namespace Volantus\BerryPWM\Tests;
 
 use PHPUnit\Framework\TestCase;
-use Volantus\BerryPwm\PwmSender\PwmSender;
+use Volantus\BerryPwm\PwmSender;
 
 /**
  * Class PwmSenderTest
@@ -22,7 +22,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <gpioPin> parameter
      */
     public function test_setPulseWidth_negativeParameter_gpioPin()
@@ -31,7 +31,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <pulseWidth> parameter
      */
     public function test_setPulseWidth_negativeParameter_pulseWidth()
@@ -46,7 +46,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <gpioPin> parameter
      */
     public function test_setDutyCycle_negativeParameter_gpioPin()
@@ -55,7 +55,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <dutyCycle> parameter
      */
     public function test_setDutyCycle_negativeParameter_dutyCycle()
@@ -64,7 +64,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <gpioPin> parameter
      */
     public function test_setRange_negativeParameter_gpioPin()
@@ -73,7 +73,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <range> parameter
      */
     public function test_setRange_negativeParameter_range()
@@ -82,7 +82,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage gpioSetPWMrange() call failed => bad duty range given (PI_BAD_DUTYRANGE)
      */
     public function test_setRange_badRange()
@@ -97,7 +97,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <gpioPin> parameter
      */
     public function test_setFrequency_negativeParameter_gpioPin()
@@ -106,7 +106,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <frequency> parameter
      */
     public function test_setFrequency_negativeParameter_frequency()
@@ -121,7 +121,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <gpioPin> parameter
      */
     public function test_getPulseWidth_negativeParameter_gpioPin()
@@ -130,7 +130,7 @@ class PwmSenderTest extends TestCase
     }
     
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage gpioPWM call failed => no active PWM signal on given GPIO (PI_NOT_SERVO_GPIO)
      */
     public function test_getPulseWidth_noActivePwmSignal()
@@ -139,7 +139,7 @@ class PwmSenderTest extends TestCase
     }
     
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <gpioPin> parameter
      */
     public function test_getRange_negativeParameter_gpioPin()
@@ -148,7 +148,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <gpioPin> parameter
      */
     public function test_getDutyCycle_negativeParameter_gpioPin()
@@ -157,7 +157,7 @@ class PwmSenderTest extends TestCase
     }
 
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage gpioPWM call failed => no active PWM signal on given GPIO (PI_NOT_PWM_GPIO)
      */
     public function test_getDutyCycle_noActivePwmSignal()
@@ -166,7 +166,7 @@ class PwmSenderTest extends TestCase
     }
     
     /**
-     * @expectedException \Volantus\BerryPwm\PwmSender\InvalidArgumentException
+     * @expectedException \Volantus\BerryPwm\InvalidArgumentException
      * @expectedExceptionMessage No negative values allowed for <gpioPin> parameter
      */
     public function test_getFrequency_negativeParameter_gpioPin()

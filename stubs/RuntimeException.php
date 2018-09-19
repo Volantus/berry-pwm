@@ -1,10 +1,10 @@
 <?php
-namespace Volantus\BerryPwm\PwmSender;
+namespace Volantus\BerryPwm;
 
 /**
  * Class RuntimeException
  *
- * @package Volantus\BerryPwm\PwmSender
+ * @package Volantus\BerryPwm
  */
 class RuntimeException extends \Exception
 {
